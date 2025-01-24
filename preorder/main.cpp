@@ -10,6 +10,17 @@ class node{
         this->left=this->right=this->right=NULL;
     }
 };
+   vector<int> preorderans(Node* root) {
+        vector<int> ans;
+        if (root == NULL) return ans; // Return an empty vector if the root is NULL
+        ans.push_back(root->data); // Add the current node's data
+        vector<int> left = preorder(root->left); // Recurse on the left subtree
+        vector<int> right = preorder(root->right); // Recurse on the right subtree
+        // Combine the current node, left subtree, and right subtree
+        ans.insert(ans.end(), left.begin(), left.end());
+        ans.insert(ans.end(), right.begin(), right.end());
+        return ans;
+    }
 void preorder(node* root){
     if(root==NULL) return;//if the current node is empty
     cout<<root->data<<" ";
